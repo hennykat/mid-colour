@@ -48,9 +48,33 @@ def rgb_to_hex(rgb):
     return HexColour(one, two, three)
 
 
+def not_divmod(div, rem, base): 
+	return div * base + rem
+
+
+def hex_to_rgb(hex):
+	hex_base = 16
+
+	one_pt_one = int(hex.un[0], 16)
+	one_pt_two = int(hex.un[1], 16)
+	two_pt_one = int(hex.deux[0], 16)
+	two_pt_two = int(hex.deux[1], 16)
+	three_pt_one = int(hex.trois[0], 16)
+	three_pt_two = int(hex.trois[1], 16)
+
+	red = not_divmod(one_pt_one, one_pt_two, hex_base)
+	green = not_divmod(two_pt_one, two_pt_two, hex_base)
+	blue = not_divmod(three_pt_one, three_pt_two, hex_base)
+
+	return RGBColour(red, green, blue)
+
+
 # test
 my_rgb = RGBColour(33, 223, 101)
 my_rgb.print()
 my_hex = rgb_to_hex(my_rgb)
 my_hex.print()
+
+new_rgb = hex_to_rgb(my_hex)
+new_rgb.print()
 
